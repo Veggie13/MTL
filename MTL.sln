@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MTL", "MTL\MTL.vcxproj", "{3038D2BE-DC6F-4E29-8A5E-0D22427BB57B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "include", "include", "{B84B1DB7-CF1C-4FEC-A06E-D756423FD75F}"
+	ProjectSection(SolutionItems) = preProject
+		include\domain.hpp = include\domain.hpp
+		include\quantity.hpp = include\quantity.hpp
+		include\range.hpp = include\range.hpp
+		include\sequence.hpp = include\sequence.hpp
+		include\string.hpp = include\string.hpp
+		include\type_list.hpp = include\type_list.hpp
+		include\unit.hpp = include\unit.hpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "details", "details", "{45393265-D897-46DD-AA51-40E3A7FEA13E}"
+	ProjectSection(SolutionItems) = preProject
+		include\details\domain_details.hpp = include\details\domain_details.hpp
+		include\details\quantity_details.hpp = include\details\quantity_details.hpp
+		include\details\sequence_details.hpp = include\details\sequence_details.hpp
+		include\details\string_details.hpp = include\details\string_details.hpp
+		include\details\type_list_details.hpp = include\details\type_list_details.hpp
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3038D2BE-DC6F-4E29-8A5E-0D22427BB57B}.Debug|x64.ActiveCfg = Debug|x64
+		{3038D2BE-DC6F-4E29-8A5E-0D22427BB57B}.Debug|x64.Build.0 = Debug|x64
+		{3038D2BE-DC6F-4E29-8A5E-0D22427BB57B}.Debug|x86.ActiveCfg = Debug|Win32
+		{3038D2BE-DC6F-4E29-8A5E-0D22427BB57B}.Debug|x86.Build.0 = Debug|Win32
+		{3038D2BE-DC6F-4E29-8A5E-0D22427BB57B}.Release|x64.ActiveCfg = Release|x64
+		{3038D2BE-DC6F-4E29-8A5E-0D22427BB57B}.Release|x64.Build.0 = Release|x64
+		{3038D2BE-DC6F-4E29-8A5E-0D22427BB57B}.Release|x86.ActiveCfg = Release|Win32
+		{3038D2BE-DC6F-4E29-8A5E-0D22427BB57B}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{45393265-D897-46DD-AA51-40E3A7FEA13E} = {B84B1DB7-CF1C-4FEC-A06E-D756423FD75F}
+	EndGlobalSection
+EndGlobal
