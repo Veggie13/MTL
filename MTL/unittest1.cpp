@@ -74,6 +74,15 @@ namespace MTL
 			float vel = v.measurement(mps);
 			float vel2 = v.measurement(fps);
 			float vel3 = v.measurement(kph);
+
+			using SS = typename exp_domain_t<scalar_d, 0>::type;
+
+			auto x = 2 * v;
+			auto y = 2 / v;
+			auto z = ((v.pow<-3>() * v) * v) * v;
+			auto w = v.pow<0>();
+			auto u = x * y;
+			auto e = v / v;
 		}
 
 	};

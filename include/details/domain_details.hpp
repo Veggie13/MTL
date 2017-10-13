@@ -7,7 +7,7 @@ namespace mtl
 	namespace details
 	{
 		template <typename Domain1T, typename Domain2T>
-		using less_than = typename std::conditional<(const_strcmp<typename Domain1T::name_type, typename Domain2T::name_type>::value < 0), std::true_type, std::false_type>::type;
+		using less_than = typename std::conditional<(const_strcmp<typename Domain1T::base_domain_type::name_type, typename Domain2T::base_domain_type::name_type>::value < 0), std::true_type, std::false_type>::type;
 
 		template <typename... DomainArgs>
 		struct domain_combinator
@@ -67,22 +67,53 @@ namespace mtl
 		};
 
 		template <typename... DomainArgs>
+		struct domain_resolver
+		{
+			using type = prod_domain_t<DomainArgs...>;
+		};
+		template <typename DomainT>
+		struct domain_resolver<DomainT>
+		{
+			using type = DomainT;
+		};
+		template <>
+		struct domain_resolver<>
+		{
+			using type = scalar_d;
+		};
+
+		template <typename... DomainArgs>
 		struct domain_collapser
 		{
 			using combined = typename domain_combinator<DomainArgs...>::type;
 			using sorted = typename sort_types<combined, less_than>::type;
 			using collapsed = typename transfer_types<sorted, domain_collapser_impl>::type;
-			using type = typename transfer_types<typename collapsed::type, prod_domain_t>::type;
+			using type = typename transfer_types<typename collapsed::type, domain_resolver>::type::type;
 		};
 	}
 
-	template <typename DomainT>
-	struct exp_domain_t<DomainT, 1>
+	template <typename Name>
+	struct exp_domain_t<domain_t<Name>, 1>
 	{
-		typedef DomainT type;
+		typedef domain_t<Name> type;
 	};
-	template <typename DomainT>
-	struct exp_domain_t<DomainT, 0>
+	template <typename Name>
+	struct exp_domain_t<domain_t<Name>, 0>
+	{
+		typedef scalar_d type;
+	};
+	template <int Power>
+	struct exp_domain_t<scalar_d, Power>
+	{
+		typedef scalar_d type;
+	};
+	template <>
+	struct exp_domain_t<scalar_d, 0>
+	{
+		typedef scalar_d type;
+	};
+	template <>
+	struct exp_domain_t<scalar_d, 1>
 	{
 		typedef scalar_d type;
 	};
@@ -101,5 +132,10 @@ namespace mtl
 	struct prod_domain_t<DomainT>
 	{
 		using type = typename DomainT::type;
+	};
+	template <>
+	struct prod_domain_t<>
+	{
+		using type = scalar_d;
 	};
 }
