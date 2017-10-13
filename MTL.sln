@@ -23,6 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "details", "details", "{4539
 		include\details\sequence_details.hpp = include\details\sequence_details.hpp
 		include\details\string_details.hpp = include\details\string_details.hpp
 		include\details\type_list_details.hpp = include\details\type_list_details.hpp
+		include\details\unit_details.hpp = include\details\unit_details.hpp
 	EndProjectSection
 EndProject
 Global

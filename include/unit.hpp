@@ -11,6 +11,7 @@ namespace mtl
 		typedef DomainT domain_type;
 
 		unit(value_type siUnitValue_);
+		unit(value_type relUnitValue_, const type& other_);
 
 		value_type value() const;
 
@@ -20,11 +21,6 @@ namespace mtl
 
 		value_type _siUnitValue;
 	};
-
-	template <typename ValueT, typename DomainT>
-	unit<ValueT, DomainT>::unit(value_type siUnitValue_)
-		: _siUnitValue(siUnitValue_) {}
-
-	template <typename ValueT, typename DomainT>
-	ValueT unit<ValueT, DomainT>::value() const { return _siUnitValue; }
 }
+
+#include "details/unit_details.hpp"

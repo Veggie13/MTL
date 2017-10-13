@@ -65,7 +65,7 @@ namespace MTL
 			unit<float, L> meter(1);
 			unit<float, T> second(1);
 			unit<float, V> mps(1);
-			unit<float, V> fps(0.3f);
+			unit<float, V> fps(0.3f, mps);
 			unit<float, V> kph(1000.0f / 3600);
 
 			quantity<float, L> d(13, meter);
