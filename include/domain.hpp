@@ -6,9 +6,6 @@ namespace mtl
 	template <typename Name> struct domain_t;
 	template <typename DomainT, int Power> struct exp_domain_t;
 	template <typename... DomainArgs> struct prod_domain_t;
-	template <typename DomainT, int Power> struct exp;
-
-	using scalar_d = domain_t<CONST_STR("scalar")>;
 
 	template <typename Name>
 	struct domain_t
@@ -37,6 +34,22 @@ namespace mtl
 	{
 		using type = typename details::domain_collapser<DomainArgs...>::type;
 	};
+
+	using scalar_d = domain_t<CONST_STR("scalar")>;
 }
 
 #include "details/domain_details.hpp"
+
+namespace mtl
+{
+	template <typename DomainT, int Power>
+	using pow = typename exp_domain_t<DomainT, Power>::type;
+	template <typename DomainT>
+	using sqr = pow<DomainT, 2>;
+	template <typename DomainT>
+	using recip = pow<DomainT, -1>;
+	template <typename... Domains>
+	using mult = typename prod_domain_t<Domains...>::type;
+	template <typename Domain1, typename Domain2>
+	using div = mult<Domain1, recip<Domain2>>;
+}

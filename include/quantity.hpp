@@ -48,7 +48,7 @@ namespace mtl
 
 		template <int Power>
 		typename quantity<value_type, typename exp_domain_t<domain_type, Power>::type>::type
-			pow();
+			pow() const;
 
 	private:
 		quantity(value_type siValue_);
@@ -63,6 +63,17 @@ namespace mtl
 
 		value_type _siValue;
 	};
+
+	template <typename DomainT>
+	using quantity_f = quantity<float, DomainT>;
+	template <typename DomainT>
+	using quantity_d = quantity<double, DomainT>;
+	template <typename DomainT>
+	using quantity_ll = quantity<long long, DomainT>;
+	template <typename DomainT>
+	using quantity_l = quantity<long, DomainT>;
+	template <typename DomainT>
+	using quantity_s = quantity<short, DomainT>;
 }
 
 #include "details/quantity_details.hpp"

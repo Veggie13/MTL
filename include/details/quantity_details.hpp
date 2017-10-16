@@ -141,7 +141,7 @@ namespace mtl
 	template <typename ValueT, typename DomainT>
 	template <int Power>
 	typename quantity<ValueT, typename exp_domain_t<DomainT, Power>::type>::type
-		quantity<ValueT, DomainT>::pow()
+		quantity<ValueT, DomainT>::pow() const
 	{
 		return ::pow(_siValue, Power);
 	}

@@ -3,6 +3,7 @@
 #include <vector>
 #include <domain.hpp>
 #include <quantity.hpp>
+#include <std_units.hpp>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -40,42 +41,24 @@ namespace MTL
 		TEST_METHOD(TestMethod1)
 		{
 			using namespace mtl;
-			using L = domain_t<CONST_STR("length")>;
-			using T = domain_t<CONST_STR("time")>;
-			using F = typename exp_domain_t<T, -1>::type;
-			using V = typename prod_domain_t<L, typename exp_domain_t<T, -1>::type>::type;
+			using L = distance_d;
+			using T = time_d;
+			using F = frequency_d;
+			using V = velocity_d;
 
-			using l1 = typename prod_domain_t<L, T, T, L, F>::type;
-			using l2 = typename prod_domain_t<L, F, L, T>::type;
-			using theList = typename prod_domain_t<l1, l2>::type;
-			//using x = at<2, colList>::type;
+			using l1 = mult<L, T, T, L, F>;
+			using l2 = mult<L, F, L, T>;
+			using theList = mult<l1, l2>;
 			auto names = transfer_types<theList, printer>::type::go();
-			//const char* names[] =
-			//{
-			//	at<0, theList>::type::name_type::value,
-			//	at<1, theList>::type::name_type::value,
-			//	at<2, theList>::type::name_type::value,
-			//	at<3, theList>::type::name_type::value,
-			//	at<4, theList>::type::name_type::value,
-			//	at<5, theList>::type::name_type::value,
-			//	at<6, theList>::type::name_type::value,
-			//	at<7, theList>::type::name_type::value,
-			//	at<8, theList>::type::name_type::value,
-			//};
-			unit<float, L> meter(1);
-			unit<float, T> second(1);
-			unit<float, V> mps(1);
-			unit<float, V> fps(0.3f, mps);
-			unit<float, V> kph(1000.0f / 3600);
 
-			quantity<float, L> d(13, meter);
-			quantity<float, T> t(2, second);
-			auto v = d / t;
-			float vel = v.measurement(mps);
+			unit_f<V> fps(0.3f, mps_f);
+
+			quantity_f<L> d(13, metre_f);
+			quantity_f<T> t(2, second_f);
+			quantity_f<V> v = d / t;
+			float vel = v.measurement(mps_f);
 			float vel2 = v.measurement(fps);
-			float vel3 = v.measurement(kph);
-
-			using SS = typename exp_domain_t<scalar_d, 0>::type;
+			float vel3 = v.measurement(kph_f);
 
 			auto x = 2 * v;
 			auto y = 2 / v;
